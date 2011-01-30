@@ -1,1 +1,8 @@
 Example of how to protect a resource in Lift. The user will be redirected to the target page after signing in successfully.
+
+0. Create an account and log back out.
+1. Go to "Unprotected"
+2. Enter a value and submit.
+3. The next page should be "Protected" but you will be required to log in first.
+4. Log in with your existing account.
+5. Bask in the glory of "Protected".
