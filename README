@@ -1,0 +1,1 @@
+Example of how to protect a resource in Lift. The user will be redirected to the target page after signing in successfully.
