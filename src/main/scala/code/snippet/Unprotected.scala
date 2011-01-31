@@ -10,7 +10,7 @@ import net.liftweb.http._
 
 class Unprotected {
   def render = { 
-    <form method="post" action="protected">
+    <form method="get" action="protected">
       <input type="text" name="someVal" value="123"/>
       <input type="submit" value="Go"/>
     </form>

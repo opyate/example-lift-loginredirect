@@ -3,9 +3,9 @@
 package bootstrap.liftweb
 
 import net.liftweb._
-import http.{LiftRules, NotFoundAsTemplate, ParsePath}
+import http._
 import sitemap.{SiteMap, Menu, Loc}
-import util.{ NamedPF }
+import util._
 import net.liftweb._
 import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
 import util.{Props}
@@ -34,10 +34,13 @@ class Boot {
     // where to search snippet
     LiftRules.addToPackages("code")
 
+    val RequireLogin = Loc.EarlyResponse(() => Full(
+        RedirectResponse("/user_mgt/login?returnTo="+Helpers.urlEncode(S.uriAndQueryString.open_!))).filter(ignore => !User.loggedIn_?))
+
     // build sitemap
     val entries = List(Menu("Home") / "index",
       Menu("Unprotected") / "unprotected",
-      Menu("Protected") / "protected" >> User.loginFirst) :::
+      Menu("Protected") / "protected" >> RequireLogin) :::
       User.sitemap
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){
